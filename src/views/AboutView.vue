@@ -1,9 +1,9 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
-    <h1>这是一个about页面</h1>
+    <h1>This is an bar page</h1>
+    <h1>Bar基础柱状图</h1>
   </div>
-  <div id="bar" style="width: 800px;height: 500px;"></div>
+  <div id="bar" style="width: 800px;height: 500px;margin: auto"></div>
 </template>
 
 <script>
@@ -25,7 +25,7 @@ export default {
         var province = ele.provinceName
         var amount = ele.finalTotalAmount
 
-        // 我们将省份名称和金额保存到provinceDaat中，将金额进行累加
+        // 将省份名称和金额保存到provinceData中，将金额进行累加
         if(!provinceData[province]){ // 代表数据第一次进入到我们的provinceData中
           provinceData[province] = {
             amount:amount
@@ -43,7 +43,7 @@ export default {
           provinceAmount:provinceData[province].amount
         }
       })
-      // console.log(data)
+      console.log(data)
 
       data.sort(function(a,b){
         return b.provinceAmount - a.provinceAmount
@@ -68,6 +68,10 @@ export default {
         ]
       };
       echarts.init(document.getElementById("bar")).setOption(option)
+    }).catch(error => {
+      console.error("请求失败:", error)
+      // 可以显示错误提示
+      alert("数据加载失败，请稍后重试")
     })
   }
 }
