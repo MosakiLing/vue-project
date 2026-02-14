@@ -1,7 +1,6 @@
 <template>
   <div class="about">
-    <h1>This is an bar page</h1>
-    <h1>Bar基础柱状图</h1>
+    <h1>Bar条形图</h1>
   </div>
   <div id="bar" style="width: 800px;height: 500px;margin: auto"></div>
 </template>
@@ -53,17 +52,40 @@ export default {
       console.log(top5.map(item => item.provinceName))
       console.log(top5.map(item => item.provinceAmount))
       var option = {
+        title: {
+          text: '各地区销量情况',
+          left: 'center'
+        },
+        legend: {
+          left: 'center',
+          bottom: 10
+        },
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'shadow'
+          }
+        },
         xAxis: {
+          type: 'value',
+          boundaryGap: [0, 0.01]
+        },
+        yAxis: {
           type: 'category',
           data: top5.map(item => item.provinceName)
         },
-        yAxis: {
-          type: 'value'
-        },
         series: [
           {
+            name: '销量额',
             data: top5.map(item => item.provinceAmount),
-            type: 'bar'
+            type: 'bar',
+            barWidth: '30%',
+          },
+          {
+            name: '销量额2',
+            data: [14000000,13000000,10000000,20000000,15000000],
+            type: 'bar',
+            barWidth: '30%',
           }
         ]
       };

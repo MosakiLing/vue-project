@@ -1,6 +1,6 @@
 <template>
     <div class="pie">
-        <h1>pie饼图</h1>
+        <h1>pie圆环图</h1>
     </div>
     <div id="pie" style="width: 800px;height: 800px;margin: auto;"></div>
 </template>
@@ -40,7 +40,7 @@ export default {
             var option = {
                 title: {
                     text: '各地区消费能力统计',
-                    // subtext: 'Fake Data',
+                    // subtext: 'Fake Data',    // 副标题
                     left: 'center'
                 },
                 tooltip: {
@@ -53,17 +53,34 @@ export default {
                 },
                 series: [
                     {
-                    name: '该地区销售总额',
-                    type: 'pie',
-                    radius: ['20%','50%'],
-                    data: data,
-                    emphasis: {
+                        name: '该地区销售总额',
+                        type: 'pie',
+                        radius: ['30%','50%'],
                         itemStyle: {
-                        shadowBlur: 10,
-                        shadowOffsetX: 0,
-                        shadowColor: 'rgba(0, 0, 0, 0.5)'
-                        }
-                    }
+                            borderRadius: 10,     // 扇形外缘圆角
+                            borderColor: '#fff',  // 边框颜色（白色）
+                            borderWidth: 2        // 边框宽度
+                        },
+                        label: {
+                            show: false,
+                            position: 'center'
+                        },
+                        emphasis: {
+                            itemStyle: {
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            },
+                            label: {
+                                show: true,        // 悬停时显示标签
+                                fontSize: 40,      // 字体大小40px
+                                fontWeight: 'bold' // 粗体
+                            }
+                        },
+                        labelLine: {
+                            show: false  // 不显示连接线
+                        },
+                        data: data
                     }
                 ]
             };
