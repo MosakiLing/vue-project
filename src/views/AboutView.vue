@@ -68,7 +68,7 @@ export default {
         },
         xAxis: {
           type: 'value',
-          boundaryGap: [0, 0.01]
+          // boundaryGap: [0, 0.01]
         },
         yAxis: {
           type: 'category',

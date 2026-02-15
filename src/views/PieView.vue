@@ -41,7 +41,8 @@ export default {
                 title: {
                     text: '各地区消费能力统计',
                     // subtext: 'Fake Data',    // 副标题
-                    left: 'center'
+                    left: 'center',
+                    top: 10
                 },
                 tooltip: {
                     trigger: 'item'
@@ -49,7 +50,7 @@ export default {
                 legend: {
                     orient: 'horizontal',  // 水平排列
                     left: 'center',        // 水平居中
-                    bottom: 10  
+                    bottom: 10
                 },
                 series: [
                     {
@@ -65,6 +66,9 @@ export default {
                             show: false,
                             position: 'center'
                         },
+                        labelLine: {
+                            show: false  // 不显示连接线
+                        },
                         emphasis: {
                             itemStyle: {
                                 shadowBlur: 10,
@@ -76,9 +80,6 @@ export default {
                                 fontSize: 40,      // 字体大小40px
                                 fontWeight: 'bold' // 粗体
                             }
-                        },
-                        labelLine: {
-                            show: false  // 不显示连接线
                         },
                         data: data
                     }
