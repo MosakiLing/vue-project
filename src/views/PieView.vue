@@ -45,7 +45,8 @@ export default {
                     top: 10
                 },
                 tooltip: {
-                    trigger: 'item'
+                    trigger: 'item',
+                    formatter: '销售总额: {c}'
                 },
                 legend: {
                     orient: 'horizontal',  // 水平排列

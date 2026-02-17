@@ -58,18 +58,23 @@ export default {
         },
         legend: {
           left: 'center',
-          bottom: 10
+          bottom: 10,
+          icon: 'circle'
         },
         tooltip: {
           trigger: 'axis',
           axisPointer: {
-            type: 'shadow'
+            type: 'cross'
+          },
+          // showContent: false
+          backgroundColor: 'pink',
+          borderColor: 'red',
+          borderWidth: 5,
+          textStyle:{
+            color: '#666'
           }
         },
-        xAxis: {
-          type: 'value',
-          // boundaryGap: [0, 0.01]
-        },
+        xAxis: {},
         yAxis: {
           type: 'category',
           data: top5.map(item => item.provinceName)

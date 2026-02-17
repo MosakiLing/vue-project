@@ -3,7 +3,7 @@
         <h1>line折线图</h1>
     </div>
     <div id="line" style="width: 800px;height: 500px;margin: auto;"></div>
-    <div id="line2" style="width: 800px;height: 500px;margin: auto;"></div>
+    <div id="area" style="width: 800px;height: 500px;margin: auto;"></div>
 </template>
 
 <script>
@@ -60,7 +60,8 @@ export default {
             var option2 = {
                 xAxis: {
                     type: 'category',
-                    data: Object.keys(dir)
+                    data: Object.keys(dir),
+                    boundaryGap: false,
                 },
                 yAxis: {
                     type: 'value'
@@ -69,11 +70,17 @@ export default {
                     {
                         data: Object.values(dir),
                         type: 'line',
-                        smooth: true
+                        smooth: true,
+                        areaStyle: {},
+                        name: '该地区销售总额'
                     }
-                ]
+                ],
+                legend: {
+                    bottom: 5,
+                    left: 'center',
+                }
             };
-            echarts.init(document.getElementById("line2")).setOption(option2)
+            echarts.init(document.getElementById("area")).setOption(option2)
         }).catch(error => {
             console.error("请求失败:", error)
             // 可以显示错误提示
