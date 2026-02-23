@@ -2,7 +2,7 @@
     <div class="pie">
         <h1>pie圆环图</h1>
     </div>
-    <div id="pie" style="width: 800px;height: 800px;margin: auto;"></div>
+    <div id="pie" style="width: 800px;height: 800px;margin: auto;border: 1px red solid"></div>
 </template>
 
 <script>
@@ -31,38 +31,40 @@ export default {
                 }
             });
             // console.log(provinceData)
-            var data = Object.keys(provinceData).map(function(province){
-                return {
-                    value:provinceData[province].amount,
-                    name:province
-                }
-            })
+            var data = Object.keys(provinceData).map(province => ({
+                value: provinceData[province].amount,
+                name: province
+            }))
             var option = {
                 title: {
                     text: '各地区消费能力统计',
                     // subtext: 'Fake Data',    // 副标题
                     left: 'center',
-                    top: 10
+                    top: 80,
+                    textStyle: {
+                        fontSize: 50
+                    }
                 },
                 tooltip: {
                     trigger: 'item',
                     formatter: '销售总额: {c}'
                 },
                 legend: {
-                    orient: 'horizontal',  // 水平排列
-                    left: 'center',        // 水平居中
-                    bottom: 10
+                    orient: 'vertical',
+                    left: 10,
+                    top: 680
                 },
                 series: [
                     {
                         name: '该地区销售总额',
                         type: 'pie',
-                        radius: ['30%','50%'],
+                        radius: ['30%','60%'],
                         itemStyle: {
                             borderRadius: 10,     // 扇形外缘圆角
                             borderColor: '#fff',  // 边框颜色（白色）
                             borderWidth: 2        // 边框宽度
                         },
+                        roseType: 'radius',
                         label: {
                             show: false,
                             position: 'center'
@@ -72,8 +74,8 @@ export default {
                         },
                         emphasis: {
                             itemStyle: {
-                                shadowBlur: 10,
-                                shadowOffsetX: 0,
+                                shadowBlur: 20,
+                                shadowOffsetX: 5,
                                 shadowColor: 'rgba(0, 0, 0, 0.5)'
                             },
                             label: {

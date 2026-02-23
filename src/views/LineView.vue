@@ -2,8 +2,8 @@
     <div class="pie">
         <h1>line折线图</h1>
     </div>
-    <div id="line" style="width: 800px;height: 500px;margin: auto;"></div>
-    <div id="area" style="width: 800px;height: 500px;margin: auto;"></div>
+    <div id="line" style="width: 800px;height: 500px;margin: auto;border: 1px red solid"></div>
+    <div id="area" style="width: 800px;height: 500px;margin: auto;border: 1px red solid"></div>
 </template>
 
 <script>
@@ -13,6 +13,7 @@ import echarts from '../assets/echarts'
 export default {
     mounted() {
         axios.get('/data.json').then(json=>{
+            console.log('echarts', echarts.version)
             var org = json.data
             // console.log(org)
             var dir = {}
@@ -43,28 +44,42 @@ export default {
                 yAxis: {
                     type: 'value'
                 },
+                tooltip: {
+                    trigger: 'axis'
+                },
                 series: [
                     {
                         name: '年销量1',
                         data: Object.values(dir),
-                        type: 'line'
+                        type: 'line',
+                        areaStyle: {},
+                        stack: '总量'
                     },
                     {
                         name: '年销量2',
                         data: [6000,10000,11000,3000],
-                        type: 'line'
+                        type: 'line',
+                        areaStyle: {},
+                        stack: '总量'
                     }
                 ]
             };
             echarts.init(document.getElementById("line")).setOption(option)
             var option2 = {
+                title: {
+                    text: 'line平滑折线图',
+                    left: 'center'
+                },
                 xAxis: {
                     type: 'category',
                     data: Object.keys(dir),
-                    boundaryGap: false,
+                    boundaryGap: false
                 },
                 yAxis: {
                     type: 'value'
+                },
+                tooltip: {
+                    trigger: 'axis'
                 },
                 series: [
                     {
@@ -72,7 +87,37 @@ export default {
                         type: 'line',
                         smooth: true,
                         areaStyle: {},
-                        name: '该地区销售总额'
+                        name: '年销售总额',
+                        areaStyle: {},
+                        markPoint: {
+                            data: [
+                                {
+                                    type: 'max',
+                                    name: '最大值',
+                                    label: {
+                                        formatter: 'MAX'
+                                    }
+                                },
+                                {
+                                    type:'min',
+                                    name: '最小值',
+                                    label: {
+                                        formatter: 'MIN'
+                                    }
+                                }
+                            ]
+                        },
+                        markLine: {
+                            data: [
+                                {
+                                    type: 'average',
+                                    name: '平均值',
+                                    label: {
+                                        formatter: 'AVG'
+                                    }
+                                }
+                            ]
+                        }
                     }
                 ],
                 legend: {

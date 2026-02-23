@@ -21,6 +21,11 @@ const routes = [
     path: '/line',
     name: 'line',
     component: () => import(/* webpackChunkName: "line" */ '../views/LineView.vue')
+  },
+  {
+    path: '/scatter',
+    name: 'scatter',
+    component: () => import(/* webpackChunkName: "scatter" */ '../views/ScatterView.vue')
   }
 ]
 

@@ -2,7 +2,7 @@
   <div class="about">
     <h1>Bar条形图</h1>
   </div>
-  <div id="bar" style="width: 800px;height: 500px;margin: auto"></div>
+  <div id="bar" style="width: 800px;height: 500px;margin: auto;border: 1px red solid"></div>
 </template>
 
 <script>
@@ -54,7 +54,11 @@ export default {
       var option = {
         title: {
           text: '各地区销量情况',
-          left: 'center'
+          left: 20,
+          top: 20,
+          textStyle: {
+            fontSize: 25
+          }
         },
         legend: {
           left: 'center',
@@ -85,12 +89,61 @@ export default {
             data: top5.map(item => item.provinceAmount),
             type: 'bar',
             barWidth: '30%',
+            markPoint: {
+              data: [
+                {
+                  type:'max',
+                  name: '最大值',
+                  symbol: 'diamond',
+                  label: {
+                    formatter: 'MAX'
+                  }
+                },
+                {
+                  type:'min',
+                  name: '最小值',
+                  symbol: 'diamond',
+                  label: {
+                    formatter: 'MIN'
+                  }
+                }
+              ]
+            },
+            markLine: {
+              data: [
+                {
+                  type: 'average',
+                  name: '平均值',
+                  label: {
+                    formatter: 'AVG'
+                  }
+                }
+              ]
+            }
           },
           {
             name: '销量额2',
             data: [14000000,13000000,10000000,20000000,15000000],
             type: 'bar',
             barWidth: '30%',
+            markPoint: {
+              data: [
+                {
+                  type:'max',
+                  name: '最大值',
+                  label: {
+                    formatter: 'MAX'
+                  }
+                },
+                {
+                  type:'min',
+                  name: '最小值',
+                  label: {
+                    formatter: 'MIN'
+                  }
+                }
+              ]
+            }
           }
         ]
       };
